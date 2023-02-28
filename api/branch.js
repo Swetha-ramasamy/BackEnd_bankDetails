@@ -22,7 +22,7 @@ app.use(
 
  export default async function branch(req, res) {
     const {data , error} = await supabase
-    .from('Bank')
+    .from('bank')
     .select()
     .ilike('branch',`${req.query.q}`)    
     .order('ifsc',{ascending:false})
