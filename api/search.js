@@ -16,16 +16,8 @@ app.use(
 )
 
 export default async function search(req, res) {
-    // client.query(`Select * from bank_branch where LOWER(branch) like '%${req.query.q.toLowerCase()}%' or lower(address) like '%${req.query.q.toLowerCase()}%' or LOWER(city) like '%${req.query.q.toLowerCase()}%' or LOWER(district) like '%${req.query.q.toLowerCase()}%' or LOWER(states) like '%${req.query.q.toLowerCase()}%' or LOWER(bank_name) like '%${req.query.q.toLowerCase()}%' order by ifsc  limit ${req.query.limit} offset ${req.query.offset}`, (err, result)=>{
-    //     if(!err){
-    //         res.send(result.rows);
-    //     }
-        
-    // });
-    // client.end;
-    console.log("hi")
         const {data, error} = await supabase
-            .from('Bank')
+            .from('bank')
             .select()
 .or(`branch.ilike.%${req.query.q.toLowerCase()}%,city.ilike.%${req.query.q.toLowerCase()}%,district.ilike.%${req.query.q.toLowerCase()}%,state.ilike.%${req.query.q.toLowerCase()}%`)
             .order('ifsc',{ascending:true})
